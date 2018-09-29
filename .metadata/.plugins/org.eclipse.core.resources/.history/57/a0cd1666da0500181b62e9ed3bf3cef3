@@ -1,0 +1,74 @@
+package bill_1;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import shoes.Shoe;
+
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
+
+public class Tbill {
+
+	private JFrame frame;
+	private JTextField textField;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Tbill window = new Tbill();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Tbill() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 700, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblProductName = new JLabel("Product Name");
+		lblProductName.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblProductName.setBounds(10, 83, 284, 21);
+		frame.getContentPane().add(lblProductName);
+		
+		JLabel lblQty = new JLabel("QTY");
+		lblQty.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblQty.setBounds(296, 83, 46, 21);
+		frame.getContentPane().add(lblQty);
+		
+		JLabel lblPrice = new JLabel("Price");
+		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblPrice.setBounds(405, 83, 116, 21);
+		frame.getContentPane().add(lblPrice);
+		
+		textField = new JTextField();
+		textField.setBounds(10, 115, 284, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+	}
+}

@@ -1,0 +1,75 @@
+package first;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.awt.Font;
+
+public class Yash {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Yash window = new Yash();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Yash() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 1300, 600);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblShoePalace = new JLabel("Shoe Palace");
+		lblShoePalace.setFont(new Font("Times New Roman", Font.PLAIN, 24));
+		lblShoePalace.setBounds(0, 0, 1284, 54);
+		frame.getContentPane().add(lblShoePalace);
+		
+		JLabel lblAddressAbc = new JLabel("Address: Abc");
+		lblAddressAbc.setFont(new Font("Times New Roman", Font.PLAIN, 17));
+		lblAddressAbc.setBounds(0, 50, 404, 33);
+		frame.getContentPane().add(lblAddressAbc);
+		
+		JLabel lblProductName = new JLabel("Product Name");
+		lblProductName.setBounds(0, 120, 404, 20);
+		frame.getContentPane().add(lblProductName);
+		
+		JLabel lblQty = new JLabel("Qty");
+		lblQty.setBounds(408, 120, 62, 20);
+		frame.getContentPane().add(lblQty);
+		
+		JLabel lblPrice = new JLabel("Price");
+		lblPrice.setBounds(475, 120, 81, 20);
+		frame.getContentPane().add(lblPrice);
+	}
+}

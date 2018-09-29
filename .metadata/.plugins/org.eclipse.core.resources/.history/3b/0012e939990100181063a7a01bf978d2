@@ -1,0 +1,74 @@
+package first;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.awt.event.ActionEvent;
+
+public class Yash {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Yash window = new Yash();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Yash() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(120, 112, 215, 72);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection conn = DriverManager.getConnection("jdbc:oracle:thean:@localhost:1527:XE","system","yash");
+					Statement st = conn.createStatement();
+					ResultSet rs = st.executeQuery("insert into yashdb.ab values('hdbh')");
+					
+				}catch(Exception ed) {
+					ed.printStackTrace();
+				}
+				
+				
+			}
+		});
+		btnNewButton.setBounds(67, 27, 157, 43);
+		frame.getContentPane().add(btnNewButton);
+	}
+}

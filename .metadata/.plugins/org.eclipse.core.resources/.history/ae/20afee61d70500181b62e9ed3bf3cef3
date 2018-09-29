@@ -1,0 +1,67 @@
+package bill_1;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+import shoes.Shoe;
+
+import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class Tbill {
+
+	private JFrame frame;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Tbill window = new Tbill();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Tbill() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JButton btnNewBill = new JButton("New Bill");
+		btnNewBill.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Shoe info = new Shoe();
+				Shoe.main(null);
+			}
+		});
+		btnNewBill.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnNewBill.setBounds(10, 54, 89, 23);
+		frame.getContentPane().add(btnNewBill);
+		
+		JButton btnAddItem = new JButton("Add Item");
+		btnAddItem.setFont(new Font("Tahoma", Font.BOLD, 12));
+		btnAddItem.setBounds(145, 55, 99, 23);
+		frame.getContentPane().add(btnAddItem);
+	}
+}

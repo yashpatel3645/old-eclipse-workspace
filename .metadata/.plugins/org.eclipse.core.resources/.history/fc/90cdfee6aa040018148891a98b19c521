@@ -1,0 +1,189 @@
+package shoes;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.beans.Statement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JTextField;
+import javax.swing.JSpinner;
+
+public class Shoe {
+
+	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	private JTextField textField_9;
+	private JTextField textField_10;
+	private JTextField textField_11;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Shoe window = new Shoe();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Shoe() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 700, 500);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+
+		textField = new JTextField();
+		textField.setBounds(25, 130, 264, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		
+		
+		JLabel lblName = new JLabel("Name");
+		lblName.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblName.setBounds(25, 105, 46, 14);
+		frame.getContentPane().add(lblName);
+		
+		
+		JLabel lblQty = new JLabel("QTY");
+		lblQty.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblQty.setBounds(288, 105, 46, 14);
+		frame.getContentPane().add(lblQty);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(288, 130, 56, 20);
+		frame.getContentPane().add(spinner);
+		
+		JLabel lblPrice = new JLabel("Price");
+		lblPrice.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblPrice.setBounds(344, 107, 46, 14);
+		frame.getContentPane().add(lblPrice);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(344, 130, 86, 20);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(344, 168, 86, 20);
+		frame.getContentPane().add(textField_2);
+		
+		JSpinner spinner_1 = new JSpinner();
+		spinner_1.setBounds(288, 168, 56, 20);
+		frame.getContentPane().add(spinner_1);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(25, 168, 264, 20);
+		frame.getContentPane().add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(344, 149, 86, 20);
+		frame.getContentPane().add(textField_4);
+		
+		JSpinner spinner_2 = new JSpinner();
+		spinner_2.setBounds(288, 149, 56, 20);
+		frame.getContentPane().add(spinner_2);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(25, 149, 264, 20);
+		frame.getContentPane().add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(344, 208, 86, 20);
+		frame.getContentPane().add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
+		textField_7.setBounds(344, 189, 86, 20);
+		frame.getContentPane().add(textField_7);
+		
+		textField_8 = new JTextField();
+		textField_8.setColumns(10);
+		textField_8.setBounds(344, 227, 86, 20);
+		frame.getContentPane().add(textField_8);
+		
+		JSpinner spinner_3 = new JSpinner();
+		spinner_3.setBounds(288, 227, 56, 20);
+		frame.getContentPane().add(spinner_3);
+		
+		JSpinner spinner_4 = new JSpinner();
+		spinner_4.setBounds(288, 208, 56, 20);
+		frame.getContentPane().add(spinner_4);
+		
+		JSpinner spinner_5 = new JSpinner();
+		spinner_5.setBounds(288, 189, 56, 20);
+		frame.getContentPane().add(spinner_5);
+		
+		textField_9 = new JTextField();
+		textField_9.setColumns(10);
+		textField_9.setBounds(25, 189, 264, 20);
+		frame.getContentPane().add(textField_9);
+		
+		textField_10 = new JTextField();
+		textField_10.setColumns(10);
+		textField_10.setBounds(25, 208, 264, 20);
+		frame.getContentPane().add(textField_10);
+		
+		textField_11 = new JTextField();
+		textField_11.setColumns(10);
+		textField_11.setBounds(25, 227, 264, 20);
+		frame.getContentPane().add(textField_11);
+		
+		JButton btnSubmit = new JButton("Submit");
+		btnSubmit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","system","yash");
+					java.sql.Statement st = conn.createStatement();
+					int rs = st.executeUpdate("insert into YASHDB.item values('"+textField.getText()+"','"+spinner.getValue()+"','"+spinner.getValue()+"')");
+					
+						
+				}
+				catch(Exception e)
+				{
+					System.out.println(e.toString());
+				}
+				
+			}
+		});
+		btnSubmit.setBounds(553, 403, 89, 23);
+		frame.getContentPane().add(btnSubmit);
+	}
+}
